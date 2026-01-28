@@ -19,6 +19,49 @@
         color: #333; 
         line-height: 1.8; 
     }
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+        
+        body { 
+            font-family: 'Noto Sans TC', sans-serif; 
+            background-color: #ffffff; 
+            color: #333; 
+            line-height: 1.8; 
+        }
+
+        /* 統一按鈕懸浮效果 */
+        .btn-hover-effect { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .btn-hover-effect:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3); }
+
+        /* 相簿燈箱專屬樣式 */
+        #photo-lightbox {
+            display: none; 
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .swiper-gallery { width: 100%; height: 100%; }
+        
+        .swiper-slide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .swiper-slide img {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 自定義導航按鈕 */
+        .swiper-button-next, .swiper-button-prev { color: #3b82f6 !important; }
+        .swiper-pagination { color: white !important; font-weight: bold; }
 
     /* 統一按鈕與卡片懸浮效果 */
     .btn-hover-effect, .roi-card { 
@@ -49,32 +92,107 @@
     .overflow-x-auto::-webkit-scrollbar-thumb {
         background: #cbd5e1;
         border-radius: 10px;
+    
     }
 </style>
 </head>
 <body class="antialiased">
 
-    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                <a href="index.html" class="flex items-center space-x-2">
-                    <span class="font-bold text-2xl tracking-tighter text-gray-800">Plant 彩虹砂</span>
-                </a>
-
-                <div class="hidden lg:flex space-x-8 text-base font-bold text-gray-500 uppercase">
-                    <a href="index.html" class="hover:text-blue-600 transition">首頁</a>
-                    <a href="tech.html" class="hover:text-blue-600 transition">核心技術</a>
-                    <a href="market.html" class="hover:text-blue-600 transition">市場洞察</a>
-                    <a href="campaign.html" class="hover:text-blue-600 transition">營銷實戰</a>
-                    <a href="roi.html" class="hover:text-blue-600 transition">商業預估</a>
-                </div>
-
-                <a href="產品新品EDM.jpg" target="_blank" class="btn-hover-effect bg-blue-600 text-white px-6 py-2.5 rounded-full text-sm font-bold shadow-lg shadow-blue-100 flex items-center">
-                    <i class="fas fa-file-image mr-2"></i> 新品規格手冊
-                </a>
+    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-lg border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-20 items-center">
+            <a href="index.html" class="flex items-center group">
+    <img src="image/LOGO_RAINBOW CAT LITTER.svg" alt="Plant 彩虹砂 Logo" class="h-10 w-auto group-hover:opacity-80 transition-opacity">
+</a>
+            <div class="hidden lg:flex space-x-10 text-sm font-bold text-gray-500 tracking-widest uppercase">
+                <a href="index.html" class="hover:text-blue-600 transition">首頁</a>
+                <a href="tech.html" class="hover:text-blue-600 transition">核心技術</a>
+                <a href="market.html" class="hover:text-blue-600 transition">市場洞察</a>
+                <a href="campaign.html" class="hover:text-blue-600 transition">營銷實戰</a>
+                <a href="roi.html" class="hover:text-blue-600 transition">商業預估</a>
             </div>
+            <a href="clinic.html#clinic-section" class="btn-hover-effect bg-blue-600 text-white px-7 py-3 rounded-full text-sm font-bold shadow-lg shadow-blue-200 transition-all flex items-center">
+                <i class="fas fa-user-md mr-2"></i> 預約醫師健檢
+            </a>
         </div>
-    </nav>
+    </div>
+</nav>
+
+    <div class="fixed top-24 right-6 z-50">
+        <button onclick="openLightbox()" class="group flex flex-col items-center focus:outline-none">
+            <div class="w-20 h-20 bg-white p-1 rounded-2xl shadow-2xl border-2 border-blue-500 overflow-hidden transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                <img src="image/EDM/EDM_RAINBOW CAT LITTER (1).jpg" alt="Album Cover" class="w-full h-full object-cover rounded-xl text-xs">
+                <div class="absolute inset-0 bg-blue-600/20 group-hover:bg-transparent transition-colors"></div>
+            </div>
+            <div class="mt-2 bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-lg tracking-wider uppercase group-hover:bg-blue-700">
+                View EDM Gallery
+            </div>
+        </button>
+    </div>
+
+    <div id="photo-lightbox">
+        <button onclick="closeLightbox()" class="absolute top-8 right-8 z-[10000] text-white/50 hover:text-white text-4xl transition-colors">
+            <i class="fas fa-times"></i>
+        </button>
+
+        <div class="swiper swiper-gallery text-xs text-white">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="image/EDM/EDM_RAINBOW CAT LITTER (1).jpg" alt="EDM 1"></div>
+                <div class="swiper-slide"><img src="image/EDM/EDM_RAINBOW CAT LITTER (2).jpg" alt="EDM 2"></div>
+                <div class="swiper-slide"><img src="image/EDM/EDM_RAINBOW CAT LITTER (3).jpg" alt="EDM 3"></div>
+                <div class="swiper-slide"><img src="image/EDM/EDM_RAINBOW CAT LITTER (4).jpg" alt="EDM 4"></div>
+                <div class="swiper-slide"><img src="image/EDM/EDM_RAINBOW CAT LITTER (5).jpg" alt="EDM 5"></div>
+                <div class="swiper-slide"><img src="image/EDM/EDM_RAINBOW CAT LITTER (6).jpg" alt="EDM 6"></div>
+                <div class="swiper-slide"><img src="image/EDM/EDM_RAINBOW CAT LITTER (7).jpg" alt="EDM 7"></div>
+                <div class="swiper-slide"><img src="image/EDM/EDM_RAINBOW CAT LITTER (8).jpg" alt="EDM 8"></div>
+                <div class="swiper-slide"><img src="image/EDM/EDM_RAINBOW CAT LITTER (9).jpg" alt="EDM 9"></div>
+                <div class="swiper-slide"><img src="image/EDM/EDM_RAINBOW CAT LITTER (10).jpg" alt="EDM 10"></div>
+                <div class="swiper-slide"><img src="image/EDM/EDM_RAINBOW CAT LITTER (11).jpg" alt="EDM 11"></div>
+                <div class="swiper-slide"><img src="image/EDM/EDM_RAINBOW CAT LITTER (12).jpg" alt="EDM 12"></div>
+            </div>
+            
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // 初始化 Swiper 實例
+        const gallerySwiper = new Swiper(".swiper-gallery", {
+            loop: true,
+            centeredSlides: true,
+            keyboard: { enabled: true },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+                type: "fraction", 
+            },
+            mousewheel: true, 
+        });
+
+        function openLightbox() {
+            const lightbox = document.getElementById('photo-lightbox');
+            lightbox.style.display = 'block';
+            document.body.style.overflow = 'hidden'; 
+            gallerySwiper.update(); 
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('photo-lightbox');
+            lightbox.style.display = 'none';
+            document.body.style.overflow = 'auto'; 
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === "Escape") closeLightbox();
+        });
+    </script>
 
     <section class="pt-44 pb-20 bg-gray-50 border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4">

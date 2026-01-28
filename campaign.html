@@ -3,75 +3,222 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plant 彩虹砂｜2026 全新上市方案</title>
+    <title>Plant 彩虹砂 2026 全新上市方案</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
-        body { font-family: 'Noto Sans TC', sans-serif; background-color: #ffffff; color: #333; line-height: 1.8; }
-        /* 統一按鈕懸浮效果 */
-        .btn-hover-effect { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .btn-hover-effect:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3); }
-    </style>
+    /* 1. 字體匯入 (必須放在最上方) */
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap');
+    
+    /* 2. 基礎樣式定義 */
+    body { 
+        font-family: 'Noto Sans TC', sans-serif; 
+        background-color: #ffffff; 
+        color: #333; 
+        line-height: 1.8; 
+    }
+
+    /* 3. 修正後的標籤樣式 (將 @apply 轉為標準 CSS) */
+    .channel-tag {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        background-color: #ffffff;
+        border: 1px solid #e5e7eb;
+        color: #9ca3af;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    /* 4. 動效與排版組件 */
+    .btn-hover-effect { 
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+    }
+    .btn-hover-effect:hover { 
+        transform: translateY(-2px); 
+        box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3); 
+    }
+
+    .timeline-line { 
+        position: absolute; 
+        left: 50%; 
+        width: 2px; 
+        height: 100%; 
+        background: #e5e7eb; 
+        transform: translateX(-50%); 
+        z-index: 0; 
+    }
+
+    /* 5. 相簿燈箱與 Swiper 套件樣式 */
+    #photo-lightbox {
+        display: none; 
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(10px);
+    }
+
+    .swiper-gallery { width: 100%; height: 100%; }
+    
+    .swiper-slide {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+    }
+
+    .swiper-slide img {
+        max-width: 100%;
+        max-height: 85vh;
+        object-fit: contain;
+        border-radius: 8px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    .swiper-button-next, .swiper-button-prev { color: #3b82f6 !important; }
+    .swiper-pagination { color: white !important; font-weight: bold; }
+</style>
 </head>
 <body class="antialiased">
 
-    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                <a href="index.html" class="flex items-center space-x-2">
-                    <span class="font-bold text-2xl tracking-tighter text-gray-800">Plant 彩虹砂</span>
-                </a>
-
-                <div class="hidden lg:flex space-x-8 text-base font-bold text-gray-500 uppercase">
-                    <a href="index.html" class="hover:text-blue-600 transition">首頁</a>
-                    <a href="tech.html" class="hover:text-blue-600 transition">核心技術</a>
-                    <a href="market.html" class="hover:text-blue-600 transition">市場洞察</a>
-                    <a href="campaign.html" class="hover:text-blue-600 transition">營銷實戰</a>
-                    <a href="roi.html" class="hover:text-blue-600 transition">商業預估</a>
-                </div>
-
-                <a href="產品新品EDM.jpg" target="_blank" class="btn-hover-effect bg-blue-600 text-white px-6 py-2.5 rounded-full text-sm font-bold shadow-lg shadow-blue-100 flex items-center">
-                    <i class="fas fa-file-image mr-2"></i> 新品規格手冊
-                </a>
+    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-lg border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-20 items-center">
+            <a href="index.html" class="flex items-center group">
+    <img src="image/LOGO_RAINBOW CAT LITTER.svg" alt="Plant 彩虹砂 Logo" class="h-10 w-auto group-hover:opacity-80 transition-opacity">
+</a>
+            <div class="hidden lg:flex space-x-10 text-sm font-bold text-gray-500 tracking-widest uppercase">
+                <a href="index.html" class="hover:text-blue-600 transition">首頁</a>
+                <a href="tech.html" class="hover:text-blue-600 transition">核心技術</a>
+                <a href="market.html" class="hover:text-blue-600 transition">市場洞察</a>
+                <a href="campaign.html" class="hover:text-blue-600 transition">營銷實戰</a>
+                <a href="roi.html" class="hover:text-blue-600 transition">商業預估</a>
             </div>
+            <a href="clinic.html#clinic-section" class="btn-hover-effect bg-blue-600 text-white px-7 py-3 rounded-full text-sm font-bold shadow-lg shadow-blue-200 transition-all flex items-center">
+                <i class="fas fa-user-md mr-2"></i> 預約醫師健檢
+            </a>
         </div>
-    </nav>
+    </div>
+</nav>
+<div id="clinic-section" class="relative flex flex-col lg:flex-row items-center">
+    </div>
+    <div class="fixed top-24 right-6 z-50">
+        <button onclick="openLightbox()" class="group flex flex-col items-center focus:outline-none">
+            <div class="w-20 h-20 bg-white p-1 rounded-2xl shadow-2xl border-2 border-blue-500 overflow-hidden transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                <img src="image/EDM/EDM_RAINBOW CAT LITTER (1).jpg" alt="Album Cover" class="w-full h-full object-cover rounded-xl text-xs">
+                <div class="absolute inset-0 bg-blue-600/20 group-hover:bg-transparent transition-colors"></div>
+            </div>
+            <div class="mt-2 bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-lg tracking-wider uppercase group-hover:bg-blue-700">
+                View EDM Gallery
+            </div>
+        </button>
+    </div>
+
+    <div id="photo-lightbox">
+        <button onclick="closeLightbox()" class="absolute top-8 right-8 z-[10000] text-white/50 hover:text-white text-4xl transition-colors">
+            <i class="fas fa-times"></i>
+        </button>
+
+        <div class="swiper swiper-gallery text-xs text-white">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="image/EDM/EDM_RAINBOW CAT LITTER (1).jpg" alt="EDM 1"></div>
+                <div class="swiper-slide"><img src="image/EDM/EDM_RAINBOW CAT LITTER (2).jpg" alt="EDM 2"></div>
+                <div class="swiper-slide"><img src="image/EDM/EDM_RAINBOW CAT LITTER (3).jpg" alt="EDM 3"></div>
+                <div class="swiper-slide"><img src="image/EDM/EDM_RAINBOW CAT LITTER (4).jpg" alt="EDM 4"></div>
+                <div class="swiper-slide"><img src="image/EDM/EDM_RAINBOW CAT LITTER (5).jpg" alt="EDM 5"></div>
+                <div class="swiper-slide"><img src="image/EDM/EDM_RAINBOW CAT LITTER (6).jpg" alt="EDM 6"></div>
+                <div class="swiper-slide"><img src="image/EDM/EDM_RAINBOW CAT LITTER (7).jpg" alt="EDM 7"></div>
+                <div class="swiper-slide"><img src="image/EDM/EDM_RAINBOW CAT LITTER (8).jpg" alt="EDM 8"></div>
+                <div class="swiper-slide"><img src="image/EDM/EDM_RAINBOW CAT LITTER (9).jpg" alt="EDM 9"></div>
+                <div class="swiper-slide"><img src="image/EDM/EDM_RAINBOW CAT LITTER (10).jpg" alt="EDM 10"></div>
+                <div class="swiper-slide"><img src="image/EDM/EDM_RAINBOW CAT LITTER (11).jpg" alt="EDM 11"></div>
+                <div class="swiper-slide"><img src="image/EDM/EDM_RAINBOW CAT LITTER (12).jpg" alt="EDM 12"></div>
+            </div>
+            
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // 初始化 Swiper 實例
+        const gallerySwiper = new Swiper(".swiper-gallery", {
+            loop: true,
+            centeredSlides: true,
+            keyboard: { enabled: true },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+                type: "fraction", 
+            },
+            mousewheel: true, 
+        });
+
+        function openLightbox() {
+            const lightbox = document.getElementById('photo-lightbox');
+            lightbox.style.display = 'block';
+            document.body.style.overflow = 'hidden'; 
+            gallerySwiper.update(); 
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('photo-lightbox');
+            lightbox.style.display = 'none';
+            document.body.style.overflow = 'auto'; 
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === "Escape") closeLightbox();
+        });
+    </script>
 
     <section class="pt-44 pb-24 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 text-center">
             <h2 class="text-blue-600 font-bold tracking-[0.3em] text-base mb-6 uppercase">Campaign Strategy</h2>
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-8 italic leading-tight">喚起意識、導流行動、延續關係</h1>
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-8 italic leading-tight">彩虹砂不只賣貓砂，<br>是賣「日常就能做到的健康觀測服務」</h1>
             <p class="text-xl text-gray-500 max-w-4xl mx-auto leading-relaxed">
-                這不只是一場產品上市活動，更是一套將「清潔勞務」轉義為「健康回饋」的行為改變實驗。我們精準填補「醫院」與「居家」間的空窗期，讓飼主在低壓力的情境下完成健康轉念。
+                透過「pH 監測 + 醫師健檢」將產品、網購、實體門市與回購串成一條線。<br>
+                這是一場將「清潔勞務」轉義為「健康回饋」的行為改變實驗。
             </p>
         </div>
     </section>
 
     <section class="py-24 bg-white relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 relative text-center mb-20">
-            <h3 class="text-3xl font-bold text-gray-900">O2O 四階段導購路徑詳解</h3>
-            <p class="text-gray-500 text-lg mt-4 font-medium italic">意識建立 $\rightarrow$ 行動引導 $\rightarrow$ 觀念轉換 $\rightarrow$ 關係延續</p>
+            <h3 class="text-3xl font-bold text-gray-900">O2O 導購路徑與時程詳解</h3>
+            <p class="text-gray-500 text-lg mt-4 font-medium italic">總期程：3 個月｜各階段曝光管道與執行重點</p>
         </div>
+        
         <div class="max-w-7xl mx-auto px-4 relative">
             <div class="timeline-line hidden lg:block"></div>
             
             <div class="space-y-32">
                 <div class="relative flex flex-col lg:flex-row items-center">
                     <div class="lg:w-1/2 lg:pr-20 text-center lg:text-right">
+                        <span class="inline-block bg-blue-50 text-blue-600 px-4 py-1 rounded-full text-xs font-bold mb-4 tracking-widest uppercase">曝光管道：FB / IG / 官網</span>
                         <span class="text-blue-600 font-black text-7xl opacity-20 block mb-4">PHASE A</span>
-                        <h4 class="text-3xl font-bold mb-6 text-gray-900">前導教育 (Awareness)</h4>
-                        <p class="text-gray-600 text-lg leading-relaxed mb-6">上市前 2 週，於官方社群與貓咪友好社團布局。</p>
-                        <p class="text-blue-600 font-bold text-lg">任務：讓飼主意識到「我忽略了什麼」</p>
+                        <h4 class="text-3xl font-bold mb-6 text-gray-900">前導教育 (上市前 2 週)</h4>
+                        <p class="text-gray-600 text-lg leading-relaxed mb-6">建立「這品牌＝懂貓咪健康」的專業信任感。</p>
+                        <p class="text-blue-600 font-bold text-lg">👉 線上預熱，先鋪健康觀念</p>
                     </div>
                     <div class="w-14 h-14 bg-white border-4 border-blue-600 rounded-full z-10 flex items-center justify-center shrink-0 my-6 lg:my-0 shadow-xl">
                         <i class="fas fa-bullhorn text-blue-600 text-lg"></i>
                     </div>
                     <div class="lg:w-1/2 lg:pl-20">
-                        <div class="bg-gray-50 p-10 rounded-[40px] border border-gray-100 phase-card shadow-sm">
+                        <div class="bg-gray-50 p-10 rounded-[40px] border border-gray-100 shadow-sm">
                             <ul class="text-base text-gray-500 space-y-4">
-                                <li class="flex items-start"><i class="fas fa-check-circle text-blue-500 mr-3 mt-1.5"></i> <span>發布健康科普內容，建立「日常觀察即健康護理」共鳴。</span></li>
-                                <li class="flex items-start"><i class="fas fa-check-circle text-blue-500 mr-3 mt-1.5"></i> <span>針對「健康常發現得太晚」的痛點建立意識。</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-blue-500 mr-3 mt-1.5"></i> <span>社群科普：為什麼「日常觀察比生病後治療重要」。</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-blue-500 mr-3 mt-1.5"></i> <span>新品預告：協助日常觀測的新品與「醫師健檢」活動預熱。</span></li>
                             </ul>
                         </div>
                     </div>
@@ -79,58 +226,79 @@
 
                 <div class="relative flex flex-col lg:flex-row-reverse items-center">
                     <div class="lg:w-1/2 lg:pl-20 text-center lg:text-left">
+                        <span class="inline-block bg-blue-50 text-blue-600 px-4 py-1 rounded-full text-xs font-bold mb-4 tracking-widest uppercase">曝光管道：官網 / 產品外包裝 / LINE</span>
                         <span class="text-blue-600 font-black text-7xl opacity-20 block mb-4">PHASE B</span>
-                        <h4 class="text-3xl font-bold mb-6 text-gray-900">引流行動 (Action)</h4>
-                        <p class="text-gray-600 text-lg leading-relaxed mb-6">上市後 2 個月累積登記，引導至官網預約現場健檢。</p>
-                        <p class="text-blue-600 font-bold text-lg uppercase tracking-tight">任務：把焦慮轉成低風險行動</p>
+                        <h4 class="text-3xl font-bold mb-6 text-gray-900">引流行動 (上市後 1-2 月)</h4>
+                        <p class="text-gray-600 text-lg leading-relaxed mb-6">把「買產品的人」變成「可再互動的名單」。</p>
+                        <p class="text-blue-600 font-bold text-lg uppercase tracking-tight">👉 每一包彩虹砂都在把人導回品牌</p>
                     </div>
                     <div class="w-14 h-14 bg-white border-4 border-blue-600 rounded-full z-10 flex items-center justify-center shrink-0 my-6 lg:my-0 shadow-xl">
                         <i class="fas fa-mouse-pointer text-blue-600 text-lg"></i>
                     </div>
                     <div class="lg:w-1/2 lg:pr-20">
-                        <div class="bg-gray-50 p-10 rounded-[40px] border border-gray-100 phase-card shadow-sm">
-                            <p class="text-base text-gray-600 leading-loose font-medium">
-                                強調這不是醫療診斷，而是「健康狀態觀測教學」。利用領薪水高峰日（5號、15號）吸引流量。
-                            </p>
+                        <div class="bg-gray-50 p-10 rounded-[40px] border border-gray-100 shadow-sm">
+                            <ul class="text-base text-gray-500 space-y-4">
+                                <li class="flex items-start"><i class="fas fa-qrcode text-blue-500 mr-3 mt-1.5"></i> <span>包裝貼活動 QR Code，引導掃碼登記醫師健檢。</span></li>
+                                <li class="flex items-start"><i class="fas fa-coins text-blue-500 mr-3 mt-1.5"></i> <span>線上持續推健檢資訊，累積領薪日(5/15號)轉化。</span></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
 
                 <div class="relative flex flex-col lg:flex-row items-center">
                     <div class="lg:w-1/2 lg:pr-20 text-center lg:text-right">
+                        <span class="inline-block bg-blue-50 text-blue-600 px-4 py-1 rounded-full text-xs font-bold mb-4 tracking-widest uppercase">曝光管道：實體直營門市 (華泰/A11)</span>
                         <span class="text-blue-700 font-black text-7xl opacity-20 block mb-4">PHASE C</span>
-                        <h4 class="text-3xl font-bold mb-6 text-blue-600">現場轉換 (Conversion)</h4>
-                        <p class="text-gray-600 text-lg leading-relaxed mb-6">地點：華泰名品城 & A11 竣百直營門市。</p>
-                        <p class="text-blue-600 font-bold text-lg underline underline-offset-8">獸醫師指導判讀趨勢，完成觀念轉換</p>
+                        <h4 class="text-3xl font-bold mb-6 text-blue-600">實體健檢轉換 (第 3 個月)</h4>
+                        <p class="text-gray-600 text-lg leading-relaxed mb-6">華泰名品城 & A11 竣百直營門市實體活動。</p>
+                        <p class="text-blue-600 font-bold text-lg underline underline-offset-8">👉 將概念轉為實體.整個活動「價值感最高」的爆點</p>
                     </div>
                     <div class="w-20 h-20 bg-blue-600 shadow-2xl shadow-blue-300 rounded-full z-10 flex items-center justify-center shrink-0 my-6 lg:my-0">
                         <i class="fas fa-user-md text-white text-3xl"></i>
                     </div>
                     <div class="lg:w-1/2 lg:pl-20">
-                        <div class="bg-blue-600 p-12 rounded-[50px] text-white shadow-2xl shadow-blue-200">
-                            <h5 class="text-2xl font-bold mb-6 italic">任務：讓購買變得合理</h5>
-                            <p class="text-lg text-blue-50 leading-loose">
-                                讓飼主理解「一次參考不夠，健康看的是趨勢」。彩虹砂作為「讓觀測不中斷的工具」自然切入。
-                            </p>
+                        <div class="bg-blue-600 p-10 rounded-[50px] text-white shadow-2xl shadow-blue-200">
+                            <h5 class="text-xl font-bold mb-6 italic flex items-center">
+                                <i class="fas fa-id-card mr-3"></i> 參加資格與報名方式
+                            </h5>
+                            <div class="space-y-6 text-blue-50 border-l-2 border-blue-400 pl-6">
+                                <div>
+                                    <p class="text-sm font-bold text-blue-200 uppercase tracking-tighter mb-2">● 健檢前一週報名截止</p>
+                                    <ul class="space-y-3">
+                                        <li class="flex items-start">
+                                            <span class="font-bold mr-2 text-white">1. QR登記制</span>
+                                            <span>凡購買彩虹砂 1 包，掃描包裝貼紙 QR 即可登記。</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="font-bold mr-2 text-white">2. 門市熟客</span>
+                                            <span>活動前 2~3 週，於該活動門市消費滿 $3000 即可預約。</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="bg-blue-700/50 p-4 rounded-xl text-sm italic">
+                                    <i class="fas fa-info-circle mr-2"></i> 同時兼顧「新客體驗（購砂）」與「老客戶回饋（滿額）」。
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="relative flex flex-col lg:flex-row-reverse items-center">
                     <div class="lg:w-1/2 lg:pl-20 text-center lg:text-left">
+                        <span class="inline-block bg-blue-50 text-blue-600 px-4 py-1 rounded-full text-xs font-bold mb-4 tracking-widest uppercase">曝光管道：LINE 客服 / 官網會員中心</span>
                         <span class="text-blue-600 font-black text-7xl opacity-20 block mb-4">PHASE D</span>
                         <h4 class="text-3xl font-bold mb-6 text-gray-900">關係延續 (Retention)</h4>
                         <p class="text-gray-600 text-lg leading-relaxed mb-6">活動後透過 LINE 官方帳號追蹤回訪。</p>
-                        <p class="text-blue-600 font-bold text-lg">任務：讓活動不只是單場，而是一段關係</p>
+                        <p class="text-blue-600 font-bold text-lg">👉 將活動轉化為長期的健康服務 IP</p>
                     </div>
                     <div class="w-14 h-14 bg-white border-4 border-blue-600 rounded-full z-10 flex items-center justify-center shrink-0 my-6 lg:my-0 shadow-xl">
                         <i class="fas fa-sync text-blue-600 text-lg"></i>
                     </div>
                     <div class="lg:w-1/2 lg:pr-20">
-                        <div class="bg-gray-50 p-10 rounded-[40px] border border-gray-100 phase-card shadow-sm">
+                        <div class="bg-gray-50 p-10 rounded-[40px] border border-gray-100 shadow-sm">
                             <ul class="text-base text-gray-500 space-y-4">
-                                <li class="flex items-start"><i class="fas fa-check text-blue-500 mr-3 mt-1.5"></i> <span>提供專屬回購入口與觀測提醒。</span></li>
-                                <li class="flex items-start"><i class="fas fa-check text-blue-500 mr-3 mt-1.5"></i> <span>將單次參與轉化為長期的健康監控習慣。</span></li>
+                                <li class="flex items-start"><i class="fas fa-ticket-alt text-blue-500 mr-3 mt-1.5"></i> <span>掃毛毛頭QR新客卷。</span></li>
+                                <li class="flex items-start"><i class="fas fa-heartbeat text-blue-500 mr-3 mt-1.5"></i> <span>複用健檢模組：未來新品同樣可用健檢當導流。</span></li>
                             </ul>
                         </div>
                     </div>
@@ -141,24 +309,28 @@
 
     <section class="py-24 bg-gray-900 text-white">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="bg-blue-600 p-12 md:p-16 rounded-[60px] shadow-2xl -mt-40 relative z-20">
-                <h3 class="text-3xl font-bold mb-10 italic">針對「曝光規模」的精準優化邏輯</h3>
-                <div class="grid md:grid-cols-2 gap-16 text-lg">
-                    <div class="space-y-8">
-                        <h5 class="text-white font-bold tracking-widest uppercase flex items-center text-xl">
-                            <i class="fas fa-bullseye mr-4"></i> 1. 定義對症市場
-                        </h5>
-                        <p class="text-blue-50 leading-loose">
-                            不採大眾式大撒網，而是精準鎖定都市商圈具泌尿道觀測需求的 3 萬隻貓。以 5 萬預算達成 1.7 貓的極高 CPA 效率。
-                        </p>
+            <div class="bg-blue-600 p-12 md:p-16 rounded-[60px] shadow-2xl relative z-20">
+                <h3 class="text-3xl font-bold mb-10 italic text-center text-white">活動執行必要物料清單</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-white/10 p-6 rounded-2xl border border-white/20">
+                        <i class="fas fa-tag text-2xl mb-4 text-blue-200"></i>
+                        <h5 class="font-bold mb-2 text-white">產品 QR 貼紙</h5>
+                        <p class="text-blue-100 text-sm">註明活動期限，將線下產品轉為線上流量。</p>
                     </div>
-                    <div class="space-y-8">
-                        <h5 class="text-white font-bold tracking-widest uppercase flex items-center text-xl">
-                            <i class="fas fa-ad mr-4"></i> 2. 產品即媒體
-                        </h5>
-                        <p class="text-blue-50 leading-loose">
-                            在包裝上貼活動 QR Code，讓每一包賣出的砂都成為一個曝光與導流點。結合領薪日與假日的高峰流量進行截擊。
-                        </p>
+                    <div class="bg-white/10 p-6 rounded-2xl border border-white/20">
+                        <i class="fas fa-file-medical text-2xl mb-4 text-blue-200"></i>
+                        <h5 class="font-bold mb-2 text-white">健檢追蹤小卡</h5>
+                        <p class="text-blue-100 text-sm">醫師建議記錄，強化飼主對健康趨勢的觀測需求。</p>
+                    </div>
+                    <div class="bg-white/10 p-6 rounded-2xl border border-white/20">
+                        <i class="fas fa-map-marked-alt text-2xl mb-4 text-blue-200"></i>
+                        <h5 class="font-bold mb-2 text-white">實體輔銷物</h5>
+                        <p class="text-blue-100 text-sm">易拉展、健康觀測主視覺 DM、門市組合促銷物。</p>
+                    </div>
+                    <div class="bg-white/10 p-6 rounded-2xl border border-white/20">
+                        <i class="fas fa-users-cog text-2xl mb-4 text-blue-200"></i>
+                        <h5 class="font-bold mb-2 text-white">人力配置</h5>
+                        <p class="text-blue-100 text-sm">專業醫師 1 名 + 行銷/門市支援人員 3 名。</p>
                     </div>
                 </div>
             </div>
@@ -170,24 +342,92 @@
             <h3 class="text-3xl font-bold mb-16 text-center text-gray-900">實體活動執行基準表</h3>
             <div class="grid md:grid-cols-3 gap-10 text-center">
                 <div class="bg-white p-12 rounded-[40px] border border-gray-100 shadow-sm transition-transform hover:-translate-y-2">
-                    <p class="text-sm text-gray-400 font-bold mb-4 uppercase tracking-widest">人力配置</p>
-                    <p class="text-2xl font-bold text-gray-900">專業醫師 1 名</p>
-                    <p class="text-lg text-gray-500 mt-2">搭配活動人員 3 名</p>
+                    <p class="text-sm text-gray-400 font-bold mb-4 uppercase tracking-widest">建議地點</p>
+                    <p class="text-2xl font-bold text-gray-900">直營門市 (1天 3小時)</p>
+                    <p class="text-lg text-gray-500 mt-2">華泰名品城 & A11</p>
                 </div>
                 <div class="bg-white p-12 rounded-[40px] border border-gray-100 shadow-sm transition-transform hover:-translate-y-2">
-                    <p class="text-sm text-gray-400 font-bold mb-4 uppercase tracking-widest">建議時間</p>
+                    <p class="text-sm text-gray-400 font-bold mb-4 uppercase tracking-widest">黃金時間</p>
                     <p class="text-2xl font-bold text-gray-900">5號至15號假日下午</p>
-                    <p class="text-lg text-gray-500 mt-2">領薪日後流量最高</p>
+                    <p class="text-lg text-gray-500 mt-2">領薪日後消費力最強</p>
                 </div>
                 <div class="bg-white p-12 rounded-[40px] border border-gray-100 shadow-sm transition-transform hover:-translate-y-2">
-                    <p class="text-sm text-gray-400 font-bold mb-4 uppercase tracking-widest">核心工具</p>
-                    <p class="text-2xl font-bold text-gray-900">健康追蹤小卡</p>
-                    <p class="text-lg text-gray-500 mt-2">搭配產品 QR 與 DM</p>
+                    <p class="text-sm text-gray-400 font-bold mb-4 uppercase tracking-widest">核心定價</p>
+                    <p class="text-2xl font-bold text-gray-900">建議售價 $220</p>
+                    <p class="text-lg text-gray-500 mt-2">毛利結構具備活動空間</p>
+                </div>
+            </div>
+            
+            <div class="mt-20 text-center">
+                <div class="inline-block bg-white border-l-8 border-blue-600 p-8 shadow-lg max-w-3xl text-left">
+                    <p class="text-xl font-bold text-gray-800 leading-relaxed italic">
+                        "消費者願不願意為「被關心的健康」留下來？<br>
+                        這個活動不是在賣活動，而是在測試一個長期的健康服務生態。"
+                    </p>
                 </div>
             </div>
         </div>
     </section>
-
+<section class="py-24 bg-white relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 relative">
+        <div class="bg-gradient-to-br from-green-50 to-blue-50 rounded-[60px] p-12 md:p-20 border border-green-100 relative overflow-hidden">
+            <i class="fab fa-line text-[200px] text-green-500/5 absolute -right-20 -bottom-20 rotate-12"></i>
+            
+            <div class="relative z-10">
+                <div class="flex flex-col lg:flex-row items-center gap-16">
+                    <div class="lg:w-5/12">
+                        <span class="inline-block bg-green-500 text-white px-4 py-1 rounded-full text-xs font-bold mb-6 tracking-widest uppercase">Digital Transformation</span>
+                        <h3 class="text-4xl font-bold text-gray-900 mb-8 leading-tight">補充辦法：<br><span class="text-green-600">LINE 官方帳號</span> 會員整合</h3>
+                        <p class="text-gray-600 text-lg mb-10 leading-relaxed">
+                            為了減少現場表單化的人力成本，我們將 LINE 打造為「數位健康隨身助理」，讓飼主從健檢到回購，只需透過一個視窗即可完成。
+                        </p>
+                        <div class="space-y-6">
+                            <div class="flex items-center p-4 bg-white rounded-2xl shadow-sm border border-green-100">
+                                <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mr-4 text-green-600">
+                                    <i class="fas fa-file-invoice text-xl"></i>
+                                </div>
+                                <span class="font-bold text-gray-700">減少紙本與手寫表單行政成本</span>
+                            </div>
+                            <div class="flex items-center p-4 bg-white rounded-2xl shadow-sm border border-green-100">
+                                <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4 text-blue-600">
+                                    <i class="fas fa-link text-xl"></i>
+                                </div>
+                                <span class="font-bold text-gray-700">緊密連結線上購物與線下體驗</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="lg:w-7/12 grid sm:grid-cols-2 gap-6">
+                        <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:shadow-md transition">
+                            <h5 class="font-bold text-xl mb-4 text-gray-900 flex items-center">
+                                <i class="fas fa-notes-medical text-green-500 mr-2"></i> 健檢結果數位化
+                            </h5>
+                            <p class="text-gray-500 text-sm leading-relaxed">醫師檢查後直接於系統標記，飼主在 LINE 即可隨時查閱「貓咪健康歷程」，取代實體小卡，方便長期追蹤。</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:shadow-md transition">
+                            <h5 class="font-bold text-xl mb-4 text-gray-900 flex items-center">
+                                <i class="fas fa-store text-blue-500 mr-2"></i> 毛毛頭一鍵購物
+                            </h5>
+                            <p class="text-gray-500 text-sm leading-relaxed">串接網購商城與門市資訊。當彩虹砂監測出現異常，選單即提供「快速補貨」與「最近門市導航」。</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:shadow-md transition">
+                            <h5 class="font-bold text-xl mb-4 text-gray-900 flex items-center">
+                                <i class="fas fa-ticket-alt text-orange-500 mr-2"></i> 智能優惠券系統
+                            </h5>
+                            <p class="text-gray-500 text-sm leading-relaxed">發放新客券、滿額折扣券。透過系統自動推播提醒使用期限，有效提升門市與網購回購率。</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:shadow-md transition">
+                            <h5 class="font-bold text-xl mb-4 text-gray-900 flex items-center">
+                                <i class="fas fa-info-circle text-purple-500 mr-2"></i> 定期健康資訊
+                            </h5>
+                            <p class="text-gray-500 text-sm leading-relaxed">由 AI 定期推送泌尿道健康、彩虹砂使用技巧等內容，將品牌從「賣家」轉型為飼主的「健康顧問」。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
     <footer class="py-16 bg-white border-t border-gray-100">
         <div class="max-w-7xl mx-auto px-4 flex justify-between items-center">
             <a href="market.html" class="text-lg font-bold text-gray-500 hover:text-blue-600 transition flex items-center group">
