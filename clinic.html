@@ -185,49 +185,50 @@
                 <p class="text-gray-600 text-lg mb-12 leading-relaxed text-center">請填寫基本資料，送出後將直接完成健檢預約登記。</p>
 
                 <form
-                    action="https://docs.google.com/forms/d/e/1FAIpQLSeLPxi5Sn9uCg62l2JnK0qbbC0js29nWDlEpLpp3uht1kI9Tg/formResponse"
+                    action="https://script.google.com/macros/s/AKfycbyaB0QA_iNDP43ZclxqSlBEhsdbiWlzF-ywqSiWq2TZb9CZu6D885Rbb1B9A-ZmVhdJTw/exec"
                     method="POST" 
                     target="hidden_iframe" 
                     class="space-y-6" 
                     onsubmit="submitted=true;">
                     
                     <div class="bg-white p-8 rounded-3xl shadow-sm space-y-6 text-left">
+                        
                         <div>
                             <label class="block text-sm font-bold text-blue-600 mb-2 uppercase tracking-widest">飼主姓名</label>
-                            <input type="text" name="entry.150841634" required class="w-full border-b-2 border-gray-100 py-3 outline-none focus:border-blue-500 transition">
+                            <input type="text" name="name" required class="w-full border-b-2 border-gray-100 py-3 outline-none focus:border-blue-500 transition">
                         </div>
 
                         <div>
                             <label class="block text-sm font-bold text-blue-600 mb-2 uppercase tracking-widest">聯絡電話</label>
-                            <input type="tel" name="entry.919383615" required class="w-full border-b-2 border-gray-100 py-3 outline-none focus:border-blue-500 transition">
+                            <input type="tel" name="phone" required class="w-full border-b-2 border-gray-100 py-3 outline-none focus:border-blue-500 transition">
                         </div>
 
                         <div>
                             <label class="block text-sm font-bold text-blue-600 mb-2 uppercase tracking-widest">預約院所</label>
-                            <select name="entry.1300944051" required class="w-full border-b-2 border-gray-100 py-3 outline-none focus:border-blue-500 transition bg-transparent text-gray-500">
+                            <select name="clinic" required class="w-full border-b-2 border-gray-100 py-3 outline-none focus:border-blue-500 transition bg-transparent text-gray-500">
                                 <option value="" disabled selected hidden>選擇慈愛動物醫院分院</option>
                                 <optgroup label="北部">
-                                    <option value="台北總院｜台北市大同區">台北總院（寧夏路）</option>
-                                    <option value="曼哈頓分院｜台北松山">曼哈頓分院（松山）</option>
-                                    <option value="大新分所｜桃園蘆竹">大新分所（桃園）</option>
-                                    <option value="新莊分所｜新北">新莊分所（新北）</option>
+                                    <option value="台北總院">台北總院</option>
+                                    <option value="曼哈頓分院">曼哈頓分院</option>
+                                    <option value="大新分所">大新分所</option>
+                                    <option value="新莊分所">新莊分所</option>
                                 </optgroup>
                                 <optgroup label="南部">
-                                    <option value="台南總院｜台南">台南總院</option>
-                                    <option value="仁德分院｜台南">仁德分院</option>
-                                    <option value="九如分院｜高雄">九如分院（高雄）</option>
+                                    <option value="台南總院">台南總院</option>
+                                    <option value="仁德分院">仁德分院</option>
+                                    <option value="九如分院">九如分院</option>
                                 </optgroup>
                             </select>
                         </div>
 
                         <div>
                             <label class="block text-sm font-bold text-blue-600 mb-2 uppercase tracking-widest text-left">預約日期</label>
-                            <input type="date" name="entry.1234567890" required class="w-full border-b-2 text-gray-400 py-3 outline-none focus:border-blue-500 transition text-gray-500 text-left">
+                            <input type="date" name="date" required class="w-full border-b-2 text-gray-400 py-3 outline-none focus:border-blue-500 transition text-gray-500 text-left">
                         </div>
 
                         <div>
                             <label class="block text-sm font-bold text-blue-600 mb-2 uppercase tracking-widest text-left">預約時段</label>
-                            <select name="entry.9876543210" required class="w-full border-b-2 text-gray-400 py-3 outline-none focus:border-blue-500 transition bg-transparent text-gray-500 text-left">
+                            <select name="time" required class="w-full border-b-2 text-gray-400 py-3 outline-none focus:border-blue-500 transition bg-transparent text-gray-500 text-left">
                                 <option value="" disabled selected hidden>請選擇時段</option>
                                 <option value="10:30–11:30">10:30 – 11:30</option>
                                 <option value="14:30–15:30">14:30 – 15:30</option>
@@ -239,11 +240,11 @@
                         <div class="grid grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-sm font-bold text-blue-600 mb-2 uppercase tracking-widest">發票號碼</label>
-                                <input type="text" name="entry.658985887" required class="w-full border-b-2 border-gray-100 py-3 outline-none focus:border-blue-500 transition text-gray-900">
+                                <input type="text" name="invoice" required class="w-full border-b-2 border-gray-100 py-3 outline-none focus:border-blue-500 transition text-gray-900">
                             </div>
                             <div>
                                 <label class="block text-sm font-bold text-blue-600 mb-2 uppercase tracking-widest">消費金額</label>
-                                <input type="number" name="entry.1535976167" required class="w-full border-b-2 border-gray-100 py-3 outline-none focus:border-blue-500 transition text-gray-900">
+                                <input type="number" name="amount" required class="w-full border-b-2 border-gray-100 py-3 outline-none focus:border-blue-500 transition text-gray-900">
                             </div>
                         </div>
 
@@ -265,14 +266,6 @@
 <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" 
         onload="if(submitted) {alert('預約資料已送出！我們將由專人與您聯繫。'); window.location.reload();}">
 </iframe>
-<script type="text/javascript">
-    var submitted = false;
-</script>
-
-<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" 
-        onload="if(submitted) {alert('預約資料已送出！我們將由專人與您聯繫。'); window.location.reload();}">
-</iframe>
-    </section>
 
     <footer class="py-16 bg-white border-t border-gray-100 text-center">
         <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8 text-center">
