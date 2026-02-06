@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-TW" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,125 +8,145 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-    /* 1. 字體匯入 (必須放在最上方) */
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap');
-    
-    /* 2. 基礎樣式定義 */
-    body { 
-        font-family: 'Noto Sans TC', sans-serif; 
-        background-color: #ffffff; 
-        color: #333; 
-        line-height: 1.8; 
-    }
+        /* 1. 字體匯入 (必須放在最上方) */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap');
 
-    /* 3. 修正後的標籤樣式 (將 @apply 轉為標準 CSS) */
-    .channel-tag {
-        display: inline-block;
-        padding: 0.25rem 0.75rem;
-        border-radius: 9999px;
-        font-size: 0.75rem;
-        font-weight: 700;
-        background-color: #ffffff;
-        border: 1px solid #e5e7eb;
-        color: #9ca3af;
-        margin-bottom: 0.5rem;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-    }
+        /* 2. 基礎樣式定義 */
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.8;
+        }
 
-    /* 4. 動效與排版組件 */
-    .btn-hover-effect { 
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-    }
-    .btn-hover-effect:hover { 
-        transform: translateY(-2px); 
-        box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3); 
-    }
+        /* 3. 修正後的標籤樣式 (將 @apply 轉為標準 CSS) */
+        .channel-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            color: #9ca3af;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
 
-    .timeline-line { 
-        position: absolute; 
-        left: 50%; 
-        width: 2px; 
-        height: 100%; 
-        background: #e5e7eb; 
-        transform: translateX(-50%); 
-        z-index: 0; 
-    }
+        /* 4. 動效與排版組件 */
+        .btn-hover-effect {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-    /* 5. 相簿燈箱與 Swiper 套件樣式 */
-    #photo-lightbox {
-        display: none; 
-        position: fixed;
-        inset: 0;
-        z-index: 9999;
-        background: rgba(0, 0, 0, 0.95);
-        backdrop-filter: blur(10px);
-    }
+        .btn-hover-effect:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+        }
 
-    .swiper-gallery { width: 100%; height: 100%; }
-    
-    .swiper-slide {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 40px;
-    }
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: #e5e7eb;
+            transform: translateX(-50%);
+            z-index: 0;
+        }
 
-    .swiper-slide img {
-        max-width: 100%;
-        max-height: 85vh;
-        object-fit: contain;
-        border-radius: 8px;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-    }
+        /* 5. 相簿燈箱與 Swiper 套件樣式 */
+        #photo-lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+        }
 
-    .swiper-button-next, .swiper-button-prev { color: #3b82f6 !important; }
-    .swiper-pagination { color: white !important; font-weight: bold; }
-</style>
+        .swiper-gallery {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .swiper-slide img {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #3b82f6 !important;
+        }
+
+        .swiper-pagination {
+            color: white !important;
+            font-weight: bold;
+        }
+    </style>
 </head>
+
 <body class="antialiased">
 
     <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-lg border-b border-gray-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-20 items-center">
-            <a href="index.html" class="flex items-center group">
-                <img src="image/LOGO_RAINBOW CAT LITTER.svg" alt="Plant 彩虹砂 Logo" class="h-10 w-auto group-hover:opacity-80 transition-opacity">
-            </a>
-            
-            <div class="hidden lg:flex space-x-10 text-sm font-bold text-gray-500 tracking-widest uppercase">
-                <a href="index.html" class="hover:text-blue-600 transition">首頁</a>
-                <a href="tech.html" class="hover:text-blue-600 transition">核心技術</a>
-                <a href="market.html" class="hover:text-blue-600 transition">健康小知識</a>
-                <a href="campaign.html" class="hover:text-blue-600 transition">活動流程</a>
-            </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <a href="index.html" class="flex items-center group">
+                    <img src="image/LOGO_RAINBOW CAT LITTER.svg" alt="Plant 彩虹砂 Logo"
+                        class="h-10 w-auto group-hover:opacity-80 transition-opacity">
+                </a>
 
-            <a href="clinic.html#registration" class="inline-flex items-center justify-center px-6 py-2.5 bg-[#2563EB] text-white rounded-full hover:bg-blue-700 transition-all duration-300 shadow-md group">
-    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-        <path stroke-linecap="round" stroke-linejoin="round" d="M9 16l2 2 4-4" />
-    </svg>
-    
-    <span class="text-base font-bold tracking-wide">立即報名健檢</span>
-</a>
+                <div class="hidden lg:flex space-x-10 text-sm font-bold text-gray-500 tracking-widest uppercase">
+                    <a href="index.html" class="hover:text-blue-600 transition">首頁</a>
+                    <a href="tech.html" class="hover:text-blue-600 transition">核心技術</a>
+                    <a href="market.html" class="hover:text-blue-600 transition">健康小知識</a>
+                    <a href="campaign.html" class="hover:text-blue-600 transition">活動流程</a>
+                </div>
+
+                <a href="clinic.html#registration"
+                    class="inline-flex items-center justify-center px-6 py-2.5 bg-[#2563EB] text-white rounded-full hover:bg-blue-700 transition-all duration-300 shadow-md group">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 16l2 2 4-4" />
+                    </svg>
+
+                    <span class="text-base font-bold tracking-wide">立即報名健檢</span>
+                </a>
+            </div>
         </div>
-    </div>
-</nav>
-<div id="clinic-section" class="relative flex flex-col lg:flex-row items-center">
+    </nav>
+    <div id="clinic-section" class="relative flex flex-col lg:flex-row items-center">
     </div>
     <div class="fixed top-24 right-6 z-50">
         <button onclick="openLightbox()" class="group flex flex-col items-center focus:outline-none">
-            <div class="w-20 h-20 bg-white p-1 rounded-2xl shadow-2xl border-2 border-blue-500 overflow-hidden transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
-                <img src="image/EDM/EDM_RAINBOW CAT LITTER (1).jpg" alt="Album Cover" class="w-full h-full object-cover rounded-xl text-xs">
+            <div
+                class="w-20 h-20 bg-white p-1 rounded-2xl shadow-2xl border-2 border-blue-500 overflow-hidden transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                <img src="image/EDM/EDM_RAINBOW CAT LITTER (1).jpg" alt="Album Cover"
+                    class="w-full h-full object-cover rounded-xl text-xs">
                 <div class="absolute inset-0 bg-blue-600/20 group-hover:bg-transparent transition-colors"></div>
             </div>
-            <div class="mt-2 bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-lg tracking-wider uppercase group-hover:bg-blue-700">
+            <div
+                class="mt-2 bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-lg tracking-wider uppercase group-hover:bg-blue-700">
                 View EDM Gallery
             </div>
         </button>
     </div>
 
     <div id="photo-lightbox">
-        <button onclick="closeLightbox()" class="absolute top-8 right-8 z-[10000] text-white/50 hover:text-white text-4xl transition-colors">
+        <button onclick="closeLightbox()"
+            class="absolute top-8 right-8 z-[10000] text-white/50 hover:text-white text-4xl transition-colors">
             <i class="fas fa-times"></i>
         </button>
 
@@ -144,7 +165,7 @@
                 <div class="swiper-slide"><img src="image/EDM/EDM_RAINBOW CAT LITTER (11).jpg" alt="EDM 11"></div>
                 <div class="swiper-slide"><img src="image/EDM/EDM_RAINBOW CAT LITTER (12).jpg" alt="EDM 12"></div>
             </div>
-            
+
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
             <div class="swiper-pagination"></div>
@@ -165,25 +186,25 @@
             pagination: {
                 el: ".swiper-pagination",
                 clickable: true,
-                type: "fraction", 
+                type: "fraction",
             },
-            mousewheel: true, 
+            mousewheel: true,
         });
 
         function openLightbox() {
             const lightbox = document.getElementById('photo-lightbox');
             lightbox.style.display = 'block';
-            document.body.style.overflow = 'hidden'; 
-            gallerySwiper.update(); 
+            document.body.style.overflow = 'hidden';
+            gallerySwiper.update();
         }
 
         function closeLightbox() {
             const lightbox = document.getElementById('photo-lightbox');
             lightbox.style.display = 'none';
-            document.body.style.overflow = 'auto'; 
+            document.body.style.overflow = 'auto';
         }
 
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             if (e.key === "Escape") closeLightbox();
         });
     </script>
@@ -191,354 +212,371 @@
 
 
     <section class="pt-44 pb-24 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 text-center">
-        <h2 class="text-blue-600 font-bold tracking-[0.3em] text-base mb-6 uppercase">
-            Why We Created This Program
-        </h2>
-        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-8 italic leading-tight">
-            彩虹砂，不只是貓砂，<br>
-            而是陪你一起留意貓咪健康的日常方式
-        </h1>
-        <p class="text-xl text-gray-500 max-w-4xl mx-auto leading-relaxed">
-            每天清貓砂，其實就是你最靠近貓咪健康的時候。<br>
-            我們只是把這件你本來就在做的事，變得更有意義一點。
-        </p>
-    </div>
-</section>
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="text-blue-600 font-bold tracking-[0.3em] text-base mb-6 uppercase">
+                Why We Created This Program
+            </h2>
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-8 italic leading-tight">
+                彩虹砂，不只是貓砂，<br>
+                而是陪你一起留意貓咪健康的日常方式
+            </h1>
+            <p class="text-xl text-gray-500 max-w-4xl mx-auto leading-relaxed">
+                每天清貓砂，其實就是你最靠近貓咪健康的時候。<br>
+                我們只是把這件你本來就在做的事，變得更有意義一點。
+            </p>
+        </div>
+    </section>
 
-<section class="py-24 bg-white relative overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 relative text-center mb-20">
-        <h3 class="text-3xl font-bold text-gray-900">
-            和彩虹砂一起照顧貓咪的三個階段
-        </h3>
-        <p class="text-gray-500 text-lg mt-4 font-medium italic">
-            從第一次使用，到長期安心陪伴
-        </p>
-    </div>
-    
-    <div class="max-w-7xl mx-auto px-4 relative">
-        <div class="timeline-line hidden lg:block"></div>
-        
-        <div class="space-y-32">
-            <!-- PHASE A -->
-            <div class="relative flex flex-col lg:flex-row items-center">
-                <div class="lg:w-1/2 lg:pr-20 text-center lg:text-right">
-                    <span class="inline-block bg-blue-50 text-blue-600 px-4 py-1 rounded-full text-xs font-bold mb-4 tracking-widest uppercase">
-                        認識階段｜社群 / 官網
-                    </span>
-                    <span class="text-blue-600 font-black text-7xl opacity-20 block mb-4">
-                        STEP 01
-                    </span>
-                    <h4 class="text-3xl font-bold mb-6 text-gray-900">
-                        先認識貓咪的日常健康
-                    </h4>
-                    <p class="text-gray-600 text-lg leading-relaxed mb-6">
-                        了解為什麼平常的小變化，其實值得被留意。
-                    </p>
-                    <p class="text-blue-600 font-bold text-lg">
-                        👉 從日常觀察開始，而不是等到生病
-                    </p>
-                </div>
-                <div class="w-14 h-14 bg-white border-4 border-blue-600 rounded-full z-10 flex items-center justify-center shrink-0 my-6 lg:my-0 shadow-xl">
-                    <i class="fas fa-bullhorn text-blue-600 text-lg"></i>
-                </div>
-                <div class="lg:w-1/2 lg:pl-20">
-                    <div class="bg-gray-50 p-10 rounded-[40px] border border-gray-100 shadow-sm">
-                        <ul class="text-base text-gray-500 space-y-4">
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-blue-500 mr-3 mt-1.5"></i>
-                                <span>分享為什麼「平常留意，比事後擔心更重要」。</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-blue-500 mr-3 mt-1.5"></i>
-                                <span>介紹彩虹砂如何幫助你觀察貓咪的日常狀況。</span>
-                            </li>
-                        </ul>
+    <section class="py-24 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 relative text-center mb-20">
+            <h3 class="text-3xl font-bold text-gray-900">
+                和彩虹砂一起照顧貓咪的三個階段
+            </h3>
+            <p class="text-gray-500 text-lg mt-4 font-medium italic">
+                從第一次使用，到長期安心陪伴
+            </p>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 relative">
+            <div class="timeline-line hidden lg:block"></div>
+
+            <div class="space-y-32">
+                <!-- PHASE A -->
+                <div class="relative flex flex-col lg:flex-row items-center">
+                    <div class="lg:w-1/2 lg:pr-20 text-center lg:text-right">
+                        <span
+                            class="inline-block bg-blue-50 text-blue-600 px-4 py-1 rounded-full text-xs font-bold mb-4 tracking-widest uppercase">
+                            認識階段｜社群 / 官網
+                        </span>
+                        <span class="text-blue-600 font-black text-7xl opacity-20 block mb-4">
+                            STEP 01
+                        </span>
+                        <h4 class="text-3xl font-bold mb-6 text-gray-900">
+                            先認識貓咪的日常健康
+                        </h4>
+                        <p class="text-gray-600 text-lg leading-relaxed mb-6">
+                            了解為什麼平常的小變化，其實值得被留意。
+                        </p>
+                        <p class="text-blue-600 font-bold text-lg">
+                            👉 從日常觀察開始，而不是等到生病
+                        </p>
                     </div>
-                </div>
-            </div>
-
-            <!-- PHASE B -->
-            <div class="relative flex flex-col lg:flex-row-reverse items-center">
-                <div class="lg:w-1/2 lg:pl-20 text-center lg:text-left">
-                    <span class="inline-block bg-blue-50 text-blue-600 px-4 py-1 rounded-full text-xs font-bold mb-4 tracking-widest uppercase">
-                        使用階段｜包裝 / LINE
-                    </span>
-                    <span class="text-blue-600 font-black text-7xl opacity-20 block mb-4">
-                        STEP 02
-                    </span>
-                    <h4 class="text-3xl font-bold mb-6 text-gray-900">
-                        每天使用，也能慢慢看見變化
-                    </h4>
-                    <p class="text-gray-600 text-lg leading-relaxed mb-6">
-                        當你有疑問時，有紀錄可以回看，也有管道可以詢問。
-                    </p>
-                    <p class="text-blue-600 font-bold text-lg uppercase tracking-tight">
-                        👉 每一包彩虹砂，都是一份安心的開始
-                    </p>
-                </div>
-                <div class="w-14 h-14 bg-white border-4 border-blue-600 rounded-full z-10 flex items-center justify-center shrink-0 my-6 lg:my-0 shadow-xl">
-                    <i class="fas fa-mouse-pointer text-blue-600 text-lg"></i>
-                </div>
-                <div class="lg:w-1/2 lg:pr-20">
-                    <div class="bg-gray-50 p-10 rounded-[40px] border border-gray-100 shadow-sm">
-                        <ul class="text-base text-gray-500 space-y-4">
-                            <li class="flex items-start">
-                                <i class="fas fa-qrcode text-blue-500 mr-3 mt-1.5"></i>
-                                <span>掃描包裝上的 QR Code，可選擇登記健檢服務。</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-coins text-blue-500 mr-3 mt-1.5"></i>
-                                <span>透過 LINE 接收健檢資訊與貼心提醒。</span>
-                            </li>
-                        </ul>
+                    <div
+                        class="w-14 h-14 bg-white border-4 border-blue-600 rounded-full z-10 flex items-center justify-center shrink-0 my-6 lg:my-0 shadow-xl">
+                        <i class="fas fa-bullhorn text-blue-600 text-lg"></i>
                     </div>
-                </div>
-            </div>
-
-            <!-- PHASE C -->
-            <div class="relative flex flex-col lg:flex-row items-center">
-                <div class="lg:w-1/2 lg:pr-20 text-center lg:text-right">
-                    <span class="inline-block bg-blue-50 text-blue-600 px-4 py-1 rounded-full text-xs font-bold mb-4 tracking-widest uppercase">
-                        確認階段｜實體門市
-                    </span>
-                    <span class="text-blue-700 font-black text-7xl opacity-20 block mb-4">
-                        STEP 03
-                    </span>
-                    <h4 class="text-3xl font-bold mb-6 text-blue-600">
-                        讓專業醫師幫你看一眼
-                    </h4>
-                    <p class="text-gray-600 text-lg leading-relaxed mb-6">
-                        把平常的觀察，交給專業確認，讓你更放心。
-                    </p>
-                    <p class="text-blue-600 font-bold text-lg underline underline-offset-8">
-                        👉 把安心落實成實際的照顧行動
-                    </p>
-                </div>
-                <div class="w-20 h-20 bg-blue-600 shadow-2xl shadow-blue-300 rounded-full z-10 flex items-center justify-center shrink-0 my-6 lg:my-0">
-                    <i class="fas fa-user-md text-white text-3xl"></i>
-                </div>
-                <div class="lg:w-1/2 lg:pl-20">
-                    <div class="bg-blue-600 p-10 rounded-[50px] text-white shadow-2xl shadow-blue-200">
-                        <h5 class="text-xl font-bold mb-6 italic flex items-center">
-                            <i class="fas fa-id-card mr-3"></i> 怎麼參加這個活動流程？
-                        </h5>
-                        <div class="space-y-6 text-blue-50 border-l-2 border-blue-400 pl-6">
-                            <div>
-                                <p class="text-sm font-bold text-blue-200 uppercase tracking-tighter mb-2">
-                                    ● 健檢前一週報名截止
-                                </p>
-                                <ul class="space-y-3">
-                                    <li class="flex items-start">
-                                        <span class="font-bold mr-2 text-white">1.</span>
-                                        <span>購買彩虹砂 1 包，掃描包裝上的 QR Code 即可登記。</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <span class="font-bold mr-2 text-white">2.</span>
-                                        <span>透過線上活動頁面登記，選定慈愛診所，於離峰時段到院進行「限定基礎健檢體驗」。</span>
-                                    </li>
-                                </ul>
-                            </div>
-                    
+                    <div class="lg:w-1/2 lg:pl-20">
+                        <div class="bg-gray-50 p-10 rounded-[40px] border border-gray-100 shadow-sm">
+                            <ul class="text-base text-gray-500 space-y-4">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-blue-500 mr-3 mt-1.5"></i>
+                                    <span>分享為什麼「平常留意，比事後擔心更重要」。</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-blue-500 mr-3 mt-1.5"></i>
+                                    <span>介紹彩虹砂如何幫助你觀察貓咪的日常狀況。</span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
+
+                <!-- PHASE B -->
+                <div class="relative flex flex-col lg:flex-row-reverse items-center">
+                    <div class="lg:w-1/2 lg:pl-20 text-center lg:text-left">
+                        <span
+                            class="inline-block bg-blue-50 text-blue-600 px-4 py-1 rounded-full text-xs font-bold mb-4 tracking-widest uppercase">
+                            使用階段｜包裝 / LINE
+                        </span>
+                        <span class="text-blue-600 font-black text-7xl opacity-20 block mb-4">
+                            STEP 02
+                        </span>
+                        <h4 class="text-3xl font-bold mb-6 text-gray-900">
+                            每天使用，也能慢慢看見變化
+                        </h4>
+                        <p class="text-gray-600 text-lg leading-relaxed mb-6">
+                            當你有疑問時，有紀錄可以回看，也有管道可以詢問。
+                        </p>
+                        <p class="text-blue-600 font-bold text-lg uppercase tracking-tight">
+                            👉 每一包彩虹砂，都是一份安心的開始
+                        </p>
+                    </div>
+                    <div
+                        class="w-14 h-14 bg-white border-4 border-blue-600 rounded-full z-10 flex items-center justify-center shrink-0 my-6 lg:my-0 shadow-xl">
+                        <i class="fas fa-mouse-pointer text-blue-600 text-lg"></i>
+                    </div>
+                    <div class="lg:w-1/2 lg:pr-20">
+                        <div class="bg-gray-50 p-10 rounded-[40px] border border-gray-100 shadow-sm">
+                            <ul class="text-base text-gray-500 space-y-4">
+                                <li class="flex items-start">
+                                    <i class="fas fa-qrcode text-blue-500 mr-3 mt-1.5"></i>
+                                    <span>掃描包裝上的 QR Code，可選擇登記健檢服務。</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-coins text-blue-500 mr-3 mt-1.5"></i>
+                                    <span>透過 LINE 接收健檢資訊與貼心提醒。</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PHASE C -->
+                <div class="relative flex flex-col lg:flex-row items-center">
+                    <div class="lg:w-1/2 lg:pr-20 text-center lg:text-right">
+                        <span
+                            class="inline-block bg-blue-50 text-blue-600 px-4 py-1 rounded-full text-xs font-bold mb-4 tracking-widest uppercase">
+                            確認階段｜實體門市
+                        </span>
+                        <span class="text-blue-700 font-black text-7xl opacity-20 block mb-4">
+                            STEP 03
+                        </span>
+                        <h4 class="text-3xl font-bold mb-6 text-blue-600">
+                            讓專業醫師幫你看一眼
+                        </h4>
+                        <p class="text-gray-600 text-lg leading-relaxed mb-6">
+                            把平常的觀察，交給專業確認，讓你更放心。
+                        </p>
+                        <p class="text-blue-600 font-bold text-lg underline underline-offset-8">
+                            👉 把安心落實成實際的照顧行動
+                        </p>
+                    </div>
+                    <div
+                        class="w-20 h-20 bg-blue-600 shadow-2xl shadow-blue-300 rounded-full z-10 flex items-center justify-center shrink-0 my-6 lg:my-0">
+                        <i class="fas fa-user-md text-white text-3xl"></i>
+                    </div>
+                    <div class="lg:w-1/2 lg:pl-20">
+                        <div class="bg-blue-600 p-10 rounded-[50px] text-white shadow-2xl shadow-blue-200">
+                            <h5 class="text-xl font-bold mb-6 italic flex items-center">
+                                <i class="fas fa-id-card mr-3"></i> 怎麼參加這個活動流程？
+                            </h5>
+                            <div class="space-y-6 text-blue-50 border-l-2 border-blue-400 pl-6">
+                                <div>
+                                    <p class="text-sm font-bold text-blue-200 uppercase tracking-tighter mb-2">
+                                        ● 健檢前一週報名截止
+                                    </p>
+                                    <ul class="space-y-3">
+                                        <li class="flex items-start">
+                                            <span class="font-bold mr-2 text-white">1.</span>
+                                            <span>購買彩虹砂 1 包，掃描包裝上的 QR Code 即可登記。</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="font-bold mr-2 text-white">2.</span>
+                                            <span>透過線上活動頁面登記，選定慈愛診所，於離峰時段到院進行「限定基礎健檢體驗」。</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PHASE D -->
+                <div class="relative flex flex-col lg:flex-row-reverse items-center">
+                    <div class="lg:w-1/2 lg:pl-20 text-center lg:text-left">
+                        <span
+                            class="inline-block bg-blue-50 text-blue-600 px-4 py-1 rounded-full text-xs font-bold mb-4 tracking-widest uppercase">
+                            陪伴階段｜LINE
+                        </span>
+                        <span class="text-blue-600 font-black text-7xl opacity-20 block mb-4">
+                            STEP 04
+                        </span>
+                        <h4 class="text-3xl font-bold mb-6 text-gray-900">
+                            這不是一次性的活動
+                        </h4>
+                        <p class="text-gray-600 text-lg leading-relaxed mb-6">
+                            希望之後照顧貓咪時，你會想起這個陪你一起留意的方式。
+                        </p>
+                        <p class="text-blue-600 font-bold text-lg">
+                            👉 把照顧，變成長久的習慣
+                        </p>
+                    </div>
+                    <div
+                        class="w-14 h-14 bg-white border-4 border-blue-600 rounded-full z-10 flex items-center justify-center shrink-0 my-6 lg:my-0 shadow-xl">
+                        <i class="fas fa-sync text-blue-600 text-lg"></i>
+                    </div>
+                    <div class="lg:w-1/2 lg:pr-20">
+                        <div class="bg-gray-50 p-10 rounded-[40px] border border-gray-100 shadow-sm">
+                            <ul class="text-base text-gray-500 space-y-4">
+                                <li class="flex items-start">
+                                    <i class="fas fa-ticket-alt text-blue-500 mr-3 mt-1.5"></i>
+                                    <span>貓咪健康，oter陪你一起長久陪伴。</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-heartbeat text-blue-500 mr-3 mt-1.5"></i>
+                                    <span>延續毛孩健康觀察。</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <section class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <h3 class="text-3xl font-bold mb-16 text-center text-gray-900">
+                健檢活動實施指南
+            </h3>
+
+            <div class="grid md:grid-cols-3 gap-10 text-center">
+                <div
+                    class="bg-white p-12 rounded-[40px] border border-gray-100 shadow-sm transition-transform hover:-translate-y-2">
+                    <p class="text-sm text-blue-600 font-bold mb-4 uppercase tracking-widest">
+                        活動地點
+                    </p>
+                    <p class="text-2xl font-bold text-gray-900">
+                        慈愛動物醫院
+                    </p>
+                    <p class="text-lg text-gray-500 mt-2">
+                        全台連鎖分院皆可配合<br>可依居住地選擇鄰近院區
+                    </p>
+                </div>
+
+                <div
+                    class="bg-white p-12 rounded-[40px] border border-gray-100 shadow-sm transition-transform hover:-translate-y-2">
+                    <p class="text-sm text-blue-600 font-bold mb-4 uppercase tracking-widest">
+                        建議時段
+                    </p>
+                    <p class="text-2xl font-bold text-gray-900">
+                        平日或離峰時段
+                    </p>
+                    <p class="text-lg text-gray-500 mt-2">
+                        週一至週五 13:00 - 16:00<br>獲得更詳盡的諮詢品質
+                    </p>
+                </div>
+
+                <div
+                    class="bg-white p-12 rounded-[40px] border border-gray-100 shadow-sm transition-transform hover:-translate-y-2">
+                    <p class="text-sm text-blue-600 font-bold mb-4 uppercase tracking-widest">
+                        參加方式
+                    </p>
+                    <p class="text-2xl font-bold text-gray-900">
+                        線上預約制
+                    </p>
+                    <p class="text-lg text-gray-500 mt-2">
+                        於 LINE 登記預約<br>攜帶彩虹砂觀測紀錄到院
+                    </p>
+                </div>
             </div>
 
-            <!-- PHASE D -->
-            <div class="relative flex flex-col lg:flex-row-reverse items-center">
-                <div class="lg:w-1/2 lg:pl-20 text-center lg:text-left">
-                    <span class="inline-block bg-blue-50 text-blue-600 px-4 py-1 rounded-full text-xs font-bold mb-4 tracking-widest uppercase">
-                        陪伴階段｜LINE
-                    </span>
-                    <span class="text-blue-600 font-black text-7xl opacity-20 block mb-4">
-                        STEP 04
-                    </span>
-                    <h4 class="text-3xl font-bold mb-6 text-gray-900">
-                        這不是一次性的活動
-                    </h4>
-                    <p class="text-gray-600 text-lg leading-relaxed mb-6">
-                        希望之後照顧貓咪時，你會想起這個陪你一起留意的方式。
-                    </p>
-                    <p class="text-blue-600 font-bold text-lg">
-                        👉 把照顧，變成長久的習慣
+            <div class="mt-20 text-center">
+                <div class="inline-block bg-white border-l-8 border-blue-600 p-8 shadow-lg max-w-3xl text-left">
+                    <p class="text-xl font-bold text-gray-800 leading-relaxed italic">
+                        「照顧貓咪，不一定要等到生病。<br>
+                        有人陪你一起留意日常的小變化，才是真正安心的開始。」
                     </p>
                 </div>
-                <div class="w-14 h-14 bg-white border-4 border-blue-600 rounded-full z-10 flex items-center justify-center shrink-0 my-6 lg:my-0 shadow-xl">
-                    <i class="fas fa-sync text-blue-600 text-lg"></i>
-                </div>
-                <div class="lg:w-1/2 lg:pr-20">
-                    <div class="bg-gray-50 p-10 rounded-[40px] border border-gray-100 shadow-sm">
-                        <ul class="text-base text-gray-500 space-y-4">
-                            <li class="flex items-start">
-                                <i class="fas fa-ticket-alt text-blue-500 mr-3 mt-1.5"></i>
-                                <span>貓咪健康，oter陪你一起長久陪伴。</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-heartbeat text-blue-500 mr-3 mt-1.5"></i>
-                                <span>延續毛孩健康觀察。</span>
-                            </li>
-                        </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="bg-blue-600 p-12 md:p-16 rounded-[60px] shadow-2xl relative z-20">
+                <h3 class="text-3xl font-bold mb-10 text-center text-white">我們在現場為您準備的專業支援</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-white/10 p-6 rounded-2xl border border-white/20">
+                        <i class="fas fa-qrcode text-2xl mb-4 text-blue-200"></i>
+                        <h5 class="font-bold mb-2 text-white">數位健康核對</h5>
+                        <p class="text-blue-100 text-sm">現場提供 QR 快速掃描，同步您的彩虹砂 pH 紀錄圖表，加速醫師判讀。</p>
+                    </div>
+                    <div class="bg-white/10 p-6 rounded-2xl border border-white/20">
+                        <i class="fas fa-notes-medical text-2xl mb-4 text-blue-200"></i>
+                        <h5 class="font-bold mb-2 text-white">健康趨勢手札</h5>
+                        <p class="text-blue-100 text-sm">提供實體健檢紀錄卡，方便您追蹤貓咪長期的健康趨勢。</p>
+                    </div>
+                    <div class="bg-white/10 p-6 rounded-2xl border border-white/20">
+                        <i class="fas fa-eye text-2xl mb-4 text-blue-200"></i>
+                        <h5 class="font-bold mb-2 text-white">視覺化衛教指引</h5>
+                        <p class="text-blue-100 text-sm">診間設有顯色對照看板，協助您精準辨識尿液 pH 值的日常變化。</p>
+                    </div>
+                    <div class="bg-white/10 p-6 rounded-2xl border border-white/20">
+                        <i class="fas fa-user-md text-2xl mb-4 text-blue-200"></i>
+                        <h5 class="font-bold mb-2 text-white">一對一諮詢服務</h5>
+                        <p class="text-blue-100 text-sm">配置專業臨床獸醫師與輔助醫療人員，確保每位飼主都能獲得專業建議。</p>
                     </div>
                 </div>
             </div>
-
         </div>
-    </div>
-</section>
+    </section>
 
+    <section class="py-24 bg-white text-gray-900">
+        <div class="max-w-4xl mx-auto px-4">
+            <h3 class="text-3xl font-bold mb-10 text-center border-b border-gray-100 pb-8 tracking-wide">
+                我們對「守護健康」的真實態度
+            </h3>
 
-<section class="py-24 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4">
-        <h3 class="text-3xl font-bold mb-16 text-center text-gray-900">
-            健檢活動實施指南
-        </h3>
-
-        <div class="grid md:grid-cols-3 gap-10 text-center">
-            <div class="bg-white p-12 rounded-[40px] border border-gray-100 shadow-sm transition-transform hover:-translate-y-2">
-                <p class="text-sm text-blue-600 font-bold mb-4 uppercase tracking-widest">
-                    活動地點
-                </p>
-                <p class="text-2xl font-bold text-gray-900">
-                    慈愛動物醫院
-                </p>
-                <p class="text-lg text-gray-500 mt-2">
-                    全台連鎖分院皆可配合<br>可依居住地選擇鄰近院區
-                </p>
-            </div>
-
-            <div class="bg-white p-12 rounded-[40px] border border-gray-100 shadow-sm transition-transform hover:-translate-y-2">
-                <p class="text-sm text-blue-600 font-bold mb-4 uppercase tracking-widest">
-                    建議時段
-                </p>
-                <p class="text-2xl font-bold text-gray-900">
-                    平日或離峰時段
-                </p>
-                <p class="text-lg text-gray-500 mt-2">
-                    週一至週五 13:00 - 16:00<br>獲得更詳盡的諮詢品質
-                </p>
-            </div>
-
-            <div class="bg-white p-12 rounded-[40px] border border-gray-100 shadow-sm transition-transform hover:-translate-y-2">
-                <p class="text-sm text-blue-600 font-bold mb-4 uppercase tracking-widest">
-                    參加方式
-                </p>
-                <p class="text-2xl font-bold text-gray-900">
-                    線上預約制
-                </p>
-                <p class="text-lg text-gray-500 mt-2">
-                    於 LINE 登記預約<br>攜帶彩虹砂觀測紀錄到院
-                </p>
-            </div>
-        </div>
-        
-        <div class="mt-20 text-center">
-            <div class="inline-block bg-white border-l-8 border-blue-600 p-8 shadow-lg max-w-3xl text-left">
-                <p class="text-xl font-bold text-gray-800 leading-relaxed italic">
-                    「照顧貓咪，不一定要等到生病。<br>
-                    有人陪你一起留意日常的小變化，才是真正安心的開始。」
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="py-24 bg-gray-900 text-white">
-    <div class="max-w-7xl mx-auto px-4">
-        <div class="bg-blue-600 p-12 md:p-16 rounded-[60px] shadow-2xl relative z-20">
-            <h3 class="text-3xl font-bold mb-10 text-center text-white">我們在現場為您準備的專業支援</h3>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="bg-white/10 p-6 rounded-2xl border border-white/20">
-                    <i class="fas fa-qrcode text-2xl mb-4 text-blue-200"></i>
-                    <h5 class="font-bold mb-2 text-white">數位健康核對</h5>
-                    <p class="text-blue-100 text-sm">現場提供 QR 快速掃描，同步您的彩虹砂 pH 紀錄圖表，加速醫師判讀。</p>
+            <div class="space-y-12">
+                <div>
+                    <h4 class="text-blue-600 font-bold text-xl mb-4 flex items-center">
+                        <span class="w-1.5 h-6 bg-blue-600 mr-3"></span>為什麼我們要發起這項健檢活動？
+                    </h4>
+                    <p class="text-gray-600 leading-relaxed text-lg">
+                        彩虹砂的核心價值在於「預警」而非診斷。我們深知 pH
+                        檢測功能若缺乏正確的引導，容易讓飼主感到迷惘。發起這項活動，是為了將產品功能與專業醫療接軌，確保每一份檢測數據都能被正確理解，不讓守護健康的初衷被忽視或過度解讀。
+                    </p>
                 </div>
-                <div class="bg-white/10 p-6 rounded-2xl border border-white/20">
-                    <i class="fas fa-notes-medical text-2xl mb-4 text-blue-200"></i>
-                    <h5 class="font-bold mb-2 text-white">健康趨勢手札</h5>
-                    <p class="text-blue-100 text-sm">提供實體健檢紀錄卡，方便您追蹤貓咪長期的健康趨勢。</p>
+
+                <div>
+                    <h4 class="text-blue-600 font-bold text-xl mb-4 flex items-center">
+                        <span class="w-1.5 h-6 bg-blue-600 mr-3"></span>為什麼堅持引入醫師的專業流程？
+                    </h4>
+                    <p class="text-gray-600 leading-relaxed text-lg">
+                        pH
+                        值是動態的，它需要被科學地對照與判讀。我們堅持由第三方獸醫師親自說明，是為了劃清「日常觀察」與「專業診斷」的界線。這不僅是為了建立品牌與飼主間的信任，更是為了確保當貓咪出現細微變化時，您能第一時間尋求正確的醫療管道，而非獨自揣測。
+                    </p>
                 </div>
-                <div class="bg-white/10 p-6 rounded-2xl border border-white/20">
-                    <i class="fas fa-eye text-2xl mb-4 text-blue-200"></i>
-                    <h5 class="font-bold mb-2 text-white">視覺化衛教指引</h5>
-                    <p class="text-blue-100 text-sm">診間設有顯色對照看板，協助您精準辨識尿液 pH 值的日常變化。</p>
-                </div>
-                <div class="bg-white/10 p-6 rounded-2xl border border-white/20">
-                    <i class="fas fa-user-md text-2xl mb-4 text-blue-200"></i>
-                    <h5 class="font-bold mb-2 text-white">一對一諮詢服務</h5>
-                    <p class="text-blue-100 text-sm">配置專業臨床獸醫師與輔助醫療人員，確保每位飼主都能獲得專業建議。</p>
+
+                <div class="bg-blue-50 p-10 rounded-[40px] border border-blue-100 text-center">
+                    <p class="text-2xl font-bold text-gray-800 leading-snug">
+                        彩虹砂不只是貓砂，而是守護健康的起點。<br>
+                        <span class="text-blue-600 mt-4 block text-3xl">「 正確使用工具，才是給予貓咪最好的愛。 」</span>
+                    </p>
+                    <p class="mt-6 text-gray-400 text-sm tracking-widest uppercase font-bold">
+                        — 讓日常觀察回歸科學，讓專業回歸醫療 —
+                    </p>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section class="py-24 bg-white text-gray-900">
-    <div class="max-w-4xl mx-auto px-4">
-        <h3 class="text-3xl font-bold mb-10 text-center border-b border-gray-100 pb-8 tracking-wide">
-            我們對「守護健康」的真實態度
-        </h3>
-        
-        <div class="space-y-12">
-            <div>
-                <h4 class="text-blue-600 font-bold text-xl mb-4 flex items-center">
-                    <span class="w-1.5 h-6 bg-blue-600 mr-3"></span>為什麼我們要發起這項健檢活動？
-                </h4>
-                <p class="text-gray-600 leading-relaxed text-lg">
-                    彩虹砂的核心價值在於「預警」而非診斷。我們深知 pH 檢測功能若缺乏正確的引導，容易讓飼主感到迷惘。發起這項活動，是為了將產品功能與專業醫療接軌，確保每一份檢測數據都能被正確理解，不讓守護健康的初衷被忽視或過度解讀。
-                </p>
-            </div>
+    <section class="py-16 bg-gray-50 text-center">
+        <div class="max-w-4xl mx-auto px-4">
+            <h3 class="text-3xl font-bold text-gray-900 mb-8">
+                準備好為貓咪進行第一次日常健康觀測了嗎？
+            </h3>
 
-            <div>
-                <h4 class="text-blue-600 font-bold text-xl mb-4 flex items-center">
-                    <span class="w-1.5 h-6 bg-blue-600 mr-3"></span>為什麼堅持引入醫師的專業流程？
-                </h4>
-                <p class="text-gray-600 leading-relaxed text-lg">
-                    pH 值是動態的，它需要被科學地對照與判讀。我們堅持由第三方獸醫師親自說明，是為了劃清「日常觀察」與「專業診斷」的界線。這不僅是為了建立品牌與飼主間的信任，更是為了確保當貓咪出現細微變化時，您能第一時間尋求正確的醫療管道，而非獨自揣測。
-                </p>
-            </div>
+            <div class="flex flex-col items-center gap-4">
+                <a href="clinic.html"
+                    class="inline-flex items-center justify-center px-10 py-4 bg-blue-600 text-white text-lg font-bold rounded-full hover:bg-blue-700 transition-colors shadow-lg">
+                    立即預約免費健檢
+                    <i class="fas fa-chevron-right ml-2"></i>
+                </a>
 
-            <div class="bg-blue-50 p-10 rounded-[40px] border border-blue-100 text-center">
-                <p class="text-2xl font-bold text-gray-800 leading-snug">
-                    彩虹砂不只是貓砂，而是守護健康的起點。<br>
-                    <span class="text-blue-600 mt-4 block text-3xl">「 正確使用工具，才是給予貓咪最好的愛。 」</span>
-                </p>
-                <p class="mt-6 text-gray-400 text-sm tracking-widest uppercase font-bold">
-                    — 讓日常觀察回歸科學，讓專業回歸醫療 —
+                <p class="text-gray-500 text-sm">
+                    點擊上方按鈕，選擇鄰近醫院完成線上登記
                 </p>
             </div>
         </div>
-    </div>
-</section>
-
-<section class="py-16 bg-gray-50 text-center">
-    <div class="max-w-4xl mx-auto px-4">
-        <h3 class="text-3xl font-bold text-gray-900 mb-8">
-            準備好為貓咪進行第一次日常健康觀測了嗎？
-        </h3>
-        
-        <div class="flex flex-col items-center gap-4">
-            <a href="clinic.html" class="inline-flex items-center justify-center px-10 py-4 bg-blue-600 text-white text-lg font-bold rounded-full hover:bg-blue-700 transition-colors shadow-lg">
-                立即預約免費健檢
-                <i class="fas fa-chevron-right ml-2"></i>
-            </a>
-            
-            <p class="text-gray-500 text-sm">
-                點擊上方按鈕，選擇鄰近醫院完成線上登記
-            </p>
-        </div>
-    </div>
-</section>
+    </section>
     <footer class="py-16 bg-white border-t border-gray-100">
         <div class="max-w-7xl mx-auto px-4 flex justify-between items-center">
-            <a href="market.html" class="text-lg font-bold text-gray-500 hover:text-blue-600 transition flex items-center group">
+            <a href="market.html"
+                class="text-lg font-bold text-gray-500 hover:text-blue-600 transition flex items-center group">
                 <i class="fas fa-arrow-left mr-3 group-hover:-translate-x-2 transition-transform"></i> 返回健康小知識
             </a>
-            <a href="roi.html" class="text-lg font-bold text-blue-600 hover:text-blue-800 transition flex items-center group">
+            <a href="roi.html"
+                class="text-lg font-bold text-blue-600 hover:text-blue-800 transition flex items-center group">
                 下一頁：商業預估 <i class="fas fa-arrow-right mr-3 group-hover:translate-x-2 transition-transform"></i>
             </a>
         </div>
     </footer>
 
 </body>
+
 </html>
