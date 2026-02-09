@@ -1,62 +1,31 @@
 <!DOCTYPE html>
 <html lang="zh-TW" class="scroll-smooth">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plant 彩虹砂 2026 全新登場</title>
+    <title>Plant 彩虹砂｜2026 全新登場</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
     <style>
-        /* 1. 字體匯入 (必須放在最上方) */
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap');
-
-        /* 2. 基礎樣式定義 */
-        body {
-            font-family: 'Noto Sans TC', sans-serif;
-            background-color: #ffffff;
-            color: #333;
-            line-height: 1.8;
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+        
+        body { 
+            font-family: 'Noto Sans TC', sans-serif; 
+            background-color: #ffffff; 
+            color: #333; 
+            line-height: 1.8; 
         }
 
-        /* 3. 修正後的標籤樣式 (將 @apply 轉為標準 CSS) */
-        .channel-tag {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            background-color: #ffffff;
-            border: 1px solid #e5e7eb;
-            color: #9ca3af;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
+        /* 統一按鈕懸浮效果 */
+        .btn-hover-effect { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .btn-hover-effect:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3); }
 
-        /* 4. 動效與排版組件 */
-        .btn-hover-effect {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .btn-hover-effect:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
-        }
-
-        .timeline-line {
-            position: absolute;
-            left: 50%;
-            width: 2px;
-            height: 100%;
-            background: #e5e7eb;
-            transform: translateX(-50%);
-            z-index: 0;
-        }
-
-        /* 5. 相簿燈箱與 Swiper 套件樣式 */
+        /* 相簿燈箱專屬樣式 */
         #photo-lightbox {
-            display: none;
+            display: none; 
             position: fixed;
             inset: 0;
             z-index: 9999;
@@ -64,11 +33,8 @@
             backdrop-filter: blur(10px);
         }
 
-        .swiper-gallery {
-            width: 100%;
-            height: 100%;
-        }
-
+        .swiper-gallery { width: 100%; height: 100%; }
+        
         .swiper-slide {
             display: flex;
             align-items: center;
@@ -84,15 +50,9 @@
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
 
-        .swiper-button-next,
-        .swiper-button-prev {
-            color: #3b82f6 !important;
-        }
-
-        .swiper-pagination {
-            color: white !important;
-            font-weight: bold;
-        }
+        /* 自定義導航按鈕 */
+        .swiper-button-next, .swiper-button-prev { color: #3b82f6 !important; }
+        .swiper-pagination { color: white !important; font-weight: bold; }
     </style>
 </head>
 
@@ -127,26 +87,21 @@
             </div>
         </div>
     </nav>
-    <div id="clinic-section" class="relative flex flex-col lg:flex-row items-center">
-    </div>
+
     <div class="fixed top-24 right-6 z-50">
         <button onclick="openLightbox()" class="group flex flex-col items-center focus:outline-none">
-            <div
-                class="w-20 h-20 bg-white p-1 rounded-2xl shadow-2xl border-2 border-blue-500 overflow-hidden transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
-                <img src="image/EDM/EDM_RAINBOW CAT LITTER (1).jpg" alt="Album Cover"
-                    class="w-full h-full object-cover rounded-xl text-xs">
+            <div class="w-20 h-20 bg-white p-1 rounded-2xl shadow-2xl border-2 border-blue-500 overflow-hidden transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                <img src="image/EDM/EDM_RAINBOW CAT LITTER (1).jpg" alt="Album Cover" class="w-full h-full object-cover rounded-xl text-xs">
                 <div class="absolute inset-0 bg-blue-600/20 group-hover:bg-transparent transition-colors"></div>
             </div>
-            <div
-                class="mt-2 bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-lg tracking-wider uppercase group-hover:bg-blue-700">
+            <div class="mt-2 bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-lg tracking-wider uppercase group-hover:bg-blue-700">
                 View EDM Gallery
             </div>
         </button>
     </div>
 
     <div id="photo-lightbox">
-        <button onclick="closeLightbox()"
-            class="absolute top-8 right-8 z-[10000] text-white/50 hover:text-white text-4xl transition-colors">
+        <button onclick="closeLightbox()" class="absolute top-8 right-8 z-[10000] text-white/50 hover:text-white text-4xl transition-colors">
             <i class="fas fa-times"></i>
         </button>
 
@@ -165,7 +120,7 @@
                 <div class="swiper-slide"><img src="image/EDM/EDM_RAINBOW CAT LITTER (11).jpg" alt="EDM 11"></div>
                 <div class="swiper-slide"><img src="image/EDM/EDM_RAINBOW CAT LITTER (12).jpg" alt="EDM 12"></div>
             </div>
-
+            
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
             <div class="swiper-pagination"></div>
@@ -186,25 +141,25 @@
             pagination: {
                 el: ".swiper-pagination",
                 clickable: true,
-                type: "fraction",
+                type: "fraction", 
             },
-            mousewheel: true,
+            mousewheel: true, 
         });
 
         function openLightbox() {
             const lightbox = document.getElementById('photo-lightbox');
             lightbox.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-            gallerySwiper.update();
+            document.body.style.overflow = 'hidden'; 
+            gallerySwiper.update(); 
         }
 
         function closeLightbox() {
             const lightbox = document.getElementById('photo-lightbox');
             lightbox.style.display = 'none';
-            document.body.style.overflow = 'auto';
+            document.body.style.overflow = 'auto'; 
         }
 
-        document.addEventListener('keydown', function (e) {
+        document.addEventListener('keydown', function(e) {
             if (e.key === "Escape") closeLightbox();
         });
     </script>
